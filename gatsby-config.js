@@ -5,6 +5,23 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    `gatsby-plugin-resolve-src`,
+    {
+      resolve: `gatsby-source-mongodb`,
+      options: {
+        dbName: `dev-codelabsDB`,
+        collection: [`labs`, `labCategories`],
+        connectionString: `mongodb+srv://dev-claat-user:S1ak7L4HJyy0IGig@cluster0.scyiw.mongodb.net`,
+        extraParams: {
+          ssl: true,
+          authSource: "admin",
+          replicaSet: "atlas-bccn65-shard-0",
+          w: "majority",
+          readPreference: "primary",
+          retryWrites: true,
+        },
+      },
+    },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     {
@@ -25,7 +42,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/mulesoft_blue_logo.svg`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-gatsby-cloud`,
