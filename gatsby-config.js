@@ -11,9 +11,9 @@ module.exports = {
     {
       resolve: `gatsby-source-mongodb`,
       options: {
-        dbName: `dev-codelabsDB`,
-        collection: [`labs`, `labCategories`],
-        connectionString: `mongodb+srv://dev-claat-user:S1ak7L4HJyy0IGig@cluster0.scyiw.mongodb.net`,
+        dbName: process.env.MONGO_DB,
+        collection: [process.env.MONGO_COLLECTION_LABS, process.env.MONGO_COLLECTION_CATS],
+        connectionString: `mongodb+srv://${process.env.MONGO_USERNAME}:${process.env.MONGO_PASSWORD}@${process.env.MONGO_HOST}`,
         extraParams: {
           ssl: true,
           authSource: 'admin',
