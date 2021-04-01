@@ -57,7 +57,7 @@ exports.createPages = ({ actions, graphql }) => {
         context: {
           labCategories: labCatsInUse,
           catSlugs: labCats.reduce((acc, lc) => {
-            return { ...acc, [lc]: `/category/${createTagSlug(lc)}` }
+            return { ...acc, [lc]: `/category/${createTagSlug(lc)}/index.html` }
           }, {}),
         },
       })
