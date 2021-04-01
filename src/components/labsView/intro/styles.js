@@ -1,30 +1,27 @@
-import styled from 'styled-components'
-import overlayIllustration from 'images/overlay.svg'
+import styled from 'styled-components';
+import overlayIllustration from 'images/overlay.svg';
 
 export const Wrapper = styled.div`
+  padding-bottom: 4rem;
   background-image: url(${overlayIllustration});
-  background-size: 400px;
+  background-size: contain;
   background-position: right top;
   background-repeat: no-repeat;
-  margin-bottom: 2rem;
-`
+`;
 
 export const IntroWrapper = styled.div`
-  padding: 3rem 0;
-  padding-bottom: 3rem;
+  padding: 4rem 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-between;
 
   @media (max-width: 960px) {
     flex-direction: column;
   }
-`
+`;
 
 export const Details = styled.div`
   flex: 1;
-  text-align: center;
 
   @media (max-width: 960px) {
     width: 100%;
@@ -51,7 +48,7 @@ export const Details = styled.div`
       font-size: 26pt;
     }
   }
-`
+`;
 
 export const Thumbnail = styled.div`
   flex: 1;
@@ -63,4 +60,4 @@ export const Thumbnail = styled.div`
   img {
     width: 100%;
   }
-`
+`;
