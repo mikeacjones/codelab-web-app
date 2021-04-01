@@ -5,7 +5,9 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    `gatsby-plugin-styled-components`,
     `gatsby-plugin-resolve-src`,
+    `@chakra-ui/gatsby-plugin`,
     {
       resolve: `gatsby-source-mongodb`,
       options: {
@@ -46,8 +48,5 @@ module.exports = {
       },
     },
     `gatsby-plugin-gatsby-cloud`,
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
   ],
 }

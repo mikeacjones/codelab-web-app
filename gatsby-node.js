@@ -1,6 +1,5 @@
 const path = require('path')
 const { paginate } = require('gatsby-awesome-pagination')
-const { createFilePath } = require('gatsby-source-filesystem')
 const { createTagSlug, powerSet } = require('./helpers')
 
 exports.createPages = ({ actions, graphql }) => {
@@ -43,6 +42,8 @@ exports.createPages = ({ actions, graphql }) => {
       const { labsPerPage } = require('./src/data/config')
       const labs = labNodes.filter(ln => ln.node.claat?.dev).map(ln => ln.node.claat.dev.codelab)
       const labCats = labCategories.map(lc => lc.name)
+      const categoriesInUse = labs.flatMap(lab => lab.category).filter((cat, index, self) => self.indexOf(cat) === index)
+      const labCatsInUse = labCategories.filter(lc => categoriesInUse.includes(lc.name))
       const categoryStrings = labCategories.map(lc => lc.name)
 
       const labsTemplate = path.resolve('./src/templates/index.js')
@@ -54,7 +55,12 @@ exports.createPages = ({ actions, graphql }) => {
         itemsPerPage: labsPerPage,
         pathPrefix: '/',
         component: labsTemplate,
-        context: {},
+        context: {
+          labCategories: labCatsInUse,
+          catSlugs: labCats.reduce((acc, lc) => {
+            return { ...acc, [lc]: `/category/${createTagSlug(lc)}` }
+          }, {}),
+        },
       })
 
       const combinedCategories = powerSet(categoryStrings).filter(set => set.length > 0)
@@ -63,10 +69,7 @@ exports.createPages = ({ actions, graphql }) => {
         const currentSlug = createTagSlug(categoryCombo.sort().join('-'))
         const catSlugs = labCats.reduce((map, cat) => {
           const linkCats = (categoryCombo.includes(cat)
-            ? [
-                ...categoryCombo.slice(0, categoryCombo.indexOf(cat)),
-                ...categoryCombo.slice(categoryCombo.indexOf(cat) + 1),
-              ]
+            ? [...categoryCombo.slice(0, categoryCombo.indexOf(cat)), ...categoryCombo.slice(categoryCombo.indexOf(cat) + 1)]
             : [...categoryCombo, cat]
           ).sort()
           map[cat] = linkCats.length === 0 ? '/' : `/category/${createTagSlug(linkCats.join('-'))}`
@@ -81,6 +84,7 @@ exports.createPages = ({ actions, graphql }) => {
           context: {
             categories: categoryCombo,
             catSlugs,
+            labCategories: labCatsInUse,
           },
         })
       }

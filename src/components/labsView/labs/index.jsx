@@ -1,6 +1,7 @@
 import React from 'react'
 import { Wrapper, Grid, Card, Item, Content, Cats, Stats, Title, Summary } from './styles'
 import { LabContainer } from 'components/common'
+import { Image } from "@chakra-ui/react"
 
 const translateTime = time => {
   if (time === 0) return ''
@@ -9,7 +10,6 @@ const translateTime = time => {
 }
 
 export const Labs = ({ labs, labCategories }) => {
-  console.log(labCategories)
   return (
     <Wrapper as={LabContainer} id='labs'>
       <Grid>
@@ -28,8 +28,8 @@ export const Labs = ({ labs, labCategories }) => {
                 {lab.category
                   .filter(cat => labCategories[cat])
                   .map(cat => (
-                    <div>
-                      <img src={`https://dasn553e683dp.cloudfront.net/images/icons/${labCategories[cat]}`}/>
+                    <div key={cat}>
+                      <Image src={`/images/icons/${labCategories[cat]}`} alt={cat} boxSize='25px' />
                     </div>
                   ))}
               </Cats>

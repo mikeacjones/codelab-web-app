@@ -1,26 +1,23 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
-import { Layout, SEO, Chip } from 'components/common'
+import { Layout, seo } from 'components/common'
 import { Intro, Labs } from 'components/labsView'
 import { PaginationLinks, PaginationLink, ActivePaginationLink } from './styles'
 
 const IndexPage = ({
   data: {
-    allMongodbDevcodelabsDbLabCategories: { nodes: labCategories },
     allMongodbDevcodelabsDbLabs: { edges: labNodes },
   },
   pageContext,
 }) => {
   const labs = labNodes.filter(ln => ln.node.claat?.dev).map(ln => ln.node.claat.dev.codelab)
-  const labCats = labCategories.reduce((acc, lc) => {
+  const labCats = pageContext.labCategories.reduce((acc, lc) => {
     return { ...acc, [lc.name]: lc.image }
   }, {})
-  console.log(labs)
   return (
     <Layout>
-      <SEO />
-      <Intro pageContext={pageContext} labCategories={labCategories} />
-
+      <seo />
+      <Intro pageContext={pageContext} />
       <Labs labs={labs} labCategories={labCats} />
       <PaginationLinks>
         {(pageContext.nextPagePath || pageContext.previousPagePath) && (
@@ -67,12 +64,6 @@ export const query = graphql`
             }
           }
         }
-      }
-    }
-    allMongodbDevcodelabsDbLabCategories {
-      nodes {
-        image
-        name
       }
     }
   }

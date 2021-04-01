@@ -5,6 +5,11 @@
   "version": "0.1.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@chakra-ui/gatsby-plugin": "^1.0.2",
+    "@chakra-ui/react": "^1.4.2",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "framer-motion": "^4",
     "gatsby": "^3.1.2",
     "gatsby-awesome-pagination": "^0.3.6",
     "gatsby-plugin-gatsby-cloud": "^2.1.0",

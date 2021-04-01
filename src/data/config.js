@@ -29,5 +29,5 @@ module.exports = {
     phone: 'phone number',
   },
   foundingDate: '2020',
-  labsPerPage: 5,
+  labsPerPage: 30,
 }
