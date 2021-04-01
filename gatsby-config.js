@@ -16,10 +16,10 @@ module.exports = {
         connectionString: `mongodb+srv://dev-claat-user:S1ak7L4HJyy0IGig@cluster0.scyiw.mongodb.net`,
         extraParams: {
           ssl: true,
-          authSource: "admin",
-          replicaSet: "atlas-bccn65-shard-0",
-          w: "majority",
-          readPreference: "primary",
+          authSource: 'admin',
+          replicaSet: 'atlas-bccn65-shard-0',
+          w: 'majority',
+          readPreference: 'primary',
           retryWrites: true,
         },
       },
@@ -44,7 +44,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/mulesoft_blue_logo.svg`, // This path is relative to the root of the site.
+        icon: `src/images/mulesoft_blue_logo.svg`,
       },
     },
     `gatsby-plugin-gatsby-cloud`,

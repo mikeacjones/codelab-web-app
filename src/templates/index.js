@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { graphql } from 'gatsby'
-import { Layout, seo } from 'components/common'
+import { Layout, SEO } from 'components/common'
 import { Intro, Labs } from 'components/labsView'
 import { PaginationLinks, PaginationLink, ActivePaginationLink } from './styles'
 
@@ -16,7 +16,7 @@ const IndexPage = ({
   }, {})
   return (
     <Layout>
-      <seo />
+      <SEO />
       <Intro pageContext={pageContext} />
       <Labs labs={labs} labCategories={labCats} />
       <PaginationLinks>
