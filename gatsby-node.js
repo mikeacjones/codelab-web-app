@@ -72,7 +72,7 @@ exports.createPages = ({ actions, graphql }) => {
             ? [...categoryCombo.slice(0, categoryCombo.indexOf(cat)), ...categoryCombo.slice(categoryCombo.indexOf(cat) + 1)]
             : [...categoryCombo, cat]
           ).sort()
-          map[cat] = linkCats.length === 0 ? '/' : `/category/${createTagSlug(linkCats.join('-'))}`
+          map[cat] = linkCats.length === 0 ? '/' : `/category/${createTagSlug(linkCats.join('-'))}/index.html`
           return map
         }, {})
         paginate({

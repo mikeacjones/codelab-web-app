@@ -7,7 +7,7 @@ export const ChipRow = ({ labCategories, categories, slugs }) => {
     <Container>
       <HStack spacing={2} wrap='flexWrap' shouldWrapChildren>
         {labCategories.map(({ name, image }, index) => (
-          <Tag key={name} size='lg' colorScheme='blue' borderRadius='full' variant={categories && categories.includes(name) ? 'subtle' : 'outline' } as='a' href={`${slugs[name]}/index.html`}>
+          <Tag key={name} size='lg' colorScheme='blue' borderRadius='full' variant={categories && categories.includes(name) ? 'subtle' : 'outline' } as='a' href={`${slugs[name]}`}>
             <Avatar
               src={`/images/icons/${image}`}
               size='xs'
