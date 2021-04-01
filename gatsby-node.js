@@ -7,13 +7,13 @@ exports.createPages = ({ actions, graphql }) => {
 
   return graphql(`
     {
-      allMongodbDevcodelabsDbLabCategories {
+      allMongodbCodelabsDbLabCategories {
         nodes {
           image
           name
         }
       }
-      allMongodbDevcodelabsDbLabs {
+      allMongodbCodelabsDbLabs {
         edges {
           node {
             claat {
@@ -35,8 +35,8 @@ exports.createPages = ({ actions, graphql }) => {
   `).then(
     ({
       data: {
-        allMongodbDevcodelabsDbLabCategories: { nodes: labCategories },
-        allMongodbDevcodelabsDbLabs: { edges: labNodes },
+        allMongodbCodelabsDbLabCategories: { nodes: labCategories },
+        allMongodbCodelabsDbLabs: { edges: labNodes },
       },
     }) => {
       const { labsPerPage } = require('./src/data/config')

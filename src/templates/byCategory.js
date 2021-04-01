@@ -6,7 +6,7 @@ import { PaginationLinks, PaginationLink, ActivePaginationLink } from './styles'
 
 const IndexPage = ({
   data: {
-    allMongodbDevcodelabsDbLabs: { edges: labNodes },
+    allMongodbCodelabsDbLabs: { edges: labNodes },
   },
   pageContext,
 }) => {
@@ -47,7 +47,7 @@ export default IndexPage
 
 export const query = graphql`
   query labQueryByCategory($skip: Int!, $limit: Int!, $categories: [String]!) {
-    allMongodbDevcodelabsDbLabs(skip: $skip, limit: $limit, filter: { claat: { dev: { codelab: { category: { in: $categories } } } } }) {
+    allMongodbCodelabsDbLabs(skip: $skip, limit: $limit, filter: { claat: { dev: { codelab: { category: { in: $categories } } } } }) {
       edges {
         node {
           claat {

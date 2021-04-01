@@ -6,7 +6,7 @@ import { PaginationLinks, PaginationLink, ActivePaginationLink } from './styles'
 
 const IndexPage = ({
   data: {
-    allMongodbDevcodelabsDbLabs: { edges: labNodes },
+    allMongodbCodelabsDbLabs: { edges: labNodes },
   },
   pageContext,
 }) => {
@@ -43,7 +43,7 @@ export default IndexPage
 
 export const query = graphql`
   query labQuery($skip: Int!, $limit: Int!) {
-    allMongodbDevcodelabsDbLabs(skip: $skip, limit: $limit) {
+    allMongodbCodelabsDbLabs(skip: $skip, limit: $limit) {
       edges {
         node {
           claat {
