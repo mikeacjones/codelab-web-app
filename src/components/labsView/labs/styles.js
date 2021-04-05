@@ -42,7 +42,7 @@ export const Summary = styled.div`
 
 export const Item = styled.div`
   border-radius: 5px;
-  box-shadow: rgb(0 0 0 / 11%) 0px 1px 6px 0px
+  box-shadow: rgb(0 0 0 / 11%) 0px 1px 6px 0px;
 
   padding: 1rem;
   background: #fff;
