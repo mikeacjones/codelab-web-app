@@ -1,7 +1,7 @@
 import React from 'react'
 import { Wrapper, Grid, Card, Item, Content, Cats, Stats, Title, Summary } from './styles'
 import { LabContainer } from 'components/common'
-import { Image } from "@chakra-ui/react"
+import { Image, Avatar } from '@chakra-ui/react'
 
 const translateTime = time => {
   if (time === 0) return ''
@@ -29,7 +29,7 @@ export const Labs = ({ labs, labCategories }) => {
                   .filter(cat => labCategories[cat])
                   .map(cat => (
                     <div key={cat}>
-                      <Image src={`/images/icons/${labCategories[cat]}`} alt={cat} boxSize='25px' />
+                      <Image src={`/images/icons/${labCategories[cat]}`} alt='' boxSize='25px' />
                     </div>
                   ))}
               </Cats>

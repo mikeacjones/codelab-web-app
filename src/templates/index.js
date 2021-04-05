@@ -5,12 +5,13 @@ import { Intro, Labs } from 'components/labsView'
 import { PaginationLinks, PaginationLink, ActivePaginationLink } from './styles'
 
 const IndexPage = ({
-  data: {
-    allMongodbCodelabsDbLabs: { edges: labNodes },
-  },
+  data,
   pageContext,
 }) => {
-  const labs = labNodes.filter(ln => ln.node.claat?.dev).map(ln => ln.node.claat.dev.codelab)
+  const labNodes = data[pageContext.buildEnv].edges
+  const labs = labNodes
+    .filter(ln => ln.node.claat?.env)
+    .map(ln => ln.node.claat.env.codelab)
   const labCats = pageContext.labCategories.reduce((acc, lc) => {
     return { ...acc, [lc.name]: lc.image }
   }, {})
@@ -47,17 +48,30 @@ export default IndexPage
 
 export const query = graphql`
   query labQuery($skip: Int!, $limit: Int!) {
-    allMongodbCodelabsDbLabCategories {
-      nodes {
-        image
-        name
-      }
-    }
-    allMongodbCodelabsDbLabs(skip: $skip, limit: $limit) {
+    dev: allMongodbCodelabsDbLabs(skip: $skip, limit: $limit) {
       edges {
         node {
           claat {
-            dev {
+            env: dev {
+              codelab {
+                category
+                url
+                updated
+                title
+                tags
+                summary
+                duration
+              }
+            }
+          }
+        }
+      }
+    }
+    prod: allMongodbCodelabsDbLabs(skip: $skip, limit: $limit) {
+      edges {
+        node {
+          claat {
+            env: prod {
               codelab {
                 category
                 url

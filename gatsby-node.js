@@ -4,7 +4,6 @@ const { createTagSlug, powerSet } = require('./helpers')
 
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
-
   return graphql(`
     {
       allMongodbCodelabsDbLabCategories {
@@ -13,11 +12,29 @@ exports.createPages = ({ actions, graphql }) => {
           name
         }
       }
-      allMongodbCodelabsDbLabs {
+      dev: allMongodbCodelabsDbLabs {
         edges {
           node {
             claat {
-              dev {
+              env: dev {
+                codelab {
+                  category
+                  url
+                  updated
+                  title
+                  tags
+                  summary
+                }
+              }
+            }
+          }
+        }
+      }
+      prod: allMongodbCodelabsDbLabs {
+        edges {
+          node {
+            claat {
+              env: prod {
                 codelab {
                   category
                   url
@@ -36,11 +53,12 @@ exports.createPages = ({ actions, graphql }) => {
     ({
       data: {
         allMongodbCodelabsDbLabCategories: { nodes: labCategories },
-        allMongodbCodelabsDbLabs: { edges: labNodes },
       },
+      data,
     }) => {
+      const labNodes = data[process.env.BUILD_ENV].edges
       const { labsPerPage } = require('./src/data/config')
-      const labs = labNodes.filter(ln => ln.node.claat?.dev).map(ln => ln.node.claat.dev.codelab)
+      const labs = labNodes.filter(ln => ln.node.claat?.env).map(ln => ln.node.claat.env.codelab)
       const labCats = labCategories.map(lc => lc.name)
       const categoriesInUse = labs.flatMap(lab => lab.category).filter((cat, index, self) => self.indexOf(cat) === index)
       const labCatsInUse = labCategories.filter(lc => categoriesInUse.includes(lc.name))
@@ -55,6 +73,7 @@ exports.createPages = ({ actions, graphql }) => {
         pathPrefix: '/',
         component: labsTemplate,
         context: {
+          buildEnv: process.env.BUILD_ENV,
           labCategories: labCatsInUse,
           catSlugs: labCats.reduce((acc, lc) => {
             return { ...acc, [lc]: `/category/${createTagSlug(lc)}` }
@@ -84,6 +103,7 @@ exports.createPages = ({ actions, graphql }) => {
             categories: categoryCombo,
             catSlugs,
             labCategories: labCatsInUse,
+            buildEnv: process.env.BUILD_ENV
           },
         })
       }
