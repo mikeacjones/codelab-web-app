@@ -1,10 +1,10 @@
 module.exports = {
-  defaultTitle: 'MuleSoft Code Labs',
-  logo: 'https://www.mulesoft.com/sites/default/files/cmm_files/mulesoft_blue_logo.svg',
+  defaultTitle: 'MuleSoft Codelabs',
+  logo: 'favicon.png',
   author: 'Michael Jones',
   url: 'https://labs.tools.mulesoft.com',
   legalName: 'Michael Jones',
-  defaultDescription: 'MuleSoft Code Labs',
+  defaultDescription: 'MuleSoft Codelabs',
   socialLinks: {
     twitter: 'http://www.twitter.com/MuleSoft',
     github: 'https://github.com/mulesoft-labs',
