@@ -23,12 +23,16 @@ const IndexPage = ({
         {(pageContext.nextPagePath || pageContext.previousPagePath) && (
           <>
             {pageContext.previousPagePath ? (
-              <ActivePaginationLink as='a' href={pageContext.previousPagePath}>Previous</ActivePaginationLink>
+              <ActivePaginationLink as='a' href={pageContext.previousPagePath}>
+                Previous
+              </ActivePaginationLink>
             ) : (
               <PaginationLink>Previous</PaginationLink>
             )}
             {pageContext.nextPagePath ? (
-              <ActivePaginationLink className='activePagination' as='a' href={pageContext.nextPagePath}>Next</ActivePaginationLink>
+              <ActivePaginationLink className='activePagination' as='a' href={pageContext.nextPagePath}>
+                Next
+              </ActivePaginationLink>
             ) : (
               <PaginationLink>Next</PaginationLink>
             )}
@@ -43,6 +47,12 @@ export default IndexPage
 
 export const query = graphql`
   query labQuery($skip: Int!, $limit: Int!) {
+    allMongodbCodelabsDbLabCategories {
+      nodes {
+        image
+        name
+      }
+    }
     allMongodbCodelabsDbLabs(skip: $skip, limit: $limit) {
       edges {
         node {

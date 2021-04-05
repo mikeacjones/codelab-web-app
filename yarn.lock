@@ -6588,7 +6588,7 @@ gatsby-plugin-gatsby-cloud@^2.1.0:
     lodash "^4.17.21"
     webpack-assets-manifest "^5.0.1"
 
-gatsby-plugin-image@^1.1.2:
+gatsby-plugin-image@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-image/-/gatsby-plugin-image-1.2.0.tgz#ad571ba270b5c1e8a679ac33eeccd01ac3370db3"
   integrity sha512-tG39QNnmld4rpTLettTL6r8BFm1rRrcionBpgUJXi9l5W4UaUn/hKdM9jV8g5aNUzo4YrEcgZcf1v2dPfrz9Iw==
@@ -6656,7 +6656,7 @@ gatsby-plugin-resolve-src@^2.1.0:
   resolved "https://registry.yarnpkg.com/gatsby-plugin-resolve-src/-/gatsby-plugin-resolve-src-2.1.0.tgz#290fec7dc7b55d05a41827b106aa04968b7549ba"
   integrity sha512-uffIv/7VD4HLvMlxl6J9zzK9Y5L2jhrU+uDXzpAKHp6kWH/zNjgbnuE1UD05Z/xo7o4ngDkk2+GWOmcbQQRIXw==
 
-gatsby-plugin-sharp@^3.1.2:
+gatsby-plugin-sharp@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-3.2.0.tgz#d0e638f91c823800e5014a83c8860c98dec914c3"
   integrity sha512-+Y4z/Q0bQL+wA1kb9wvAKlSz+o0+2V3IRxhu8kx/0pfpk48Q0apk+v4UMn7l835yocKfsePj8qvW7Ez0D47O9A==
@@ -6780,7 +6780,7 @@ gatsby-recipes@^0.13.0:
     xstate "^4.9.1"
     yoga-layout-prebuilt "^1.9.6"
 
-gatsby-source-filesystem@^3.1.0:
+gatsby-source-filesystem@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-3.2.0.tgz#1ceec22a068b235a084b15fb426898ef213fe995"
   integrity sha512-5CAMdSiasWCciJEneIU1RgS9IcHrTwl8i7xqPxhE9ihBa+Y1RSEX3FdtNGnK3Z5dYQVHMwR0NNOPJ3WZW0rJQQ==
@@ -6830,7 +6830,7 @@ gatsby-telemetry@^2.2.0:
     node-fetch "^2.6.1"
     uuid "3.4.0"
 
-gatsby-transformer-sharp@^3.1.0:
+gatsby-transformer-sharp@^3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/gatsby-transformer-sharp/-/gatsby-transformer-sharp-3.2.0.tgz#f6b8481dfacdc1d8d27c253213982f8571af462b"
   integrity sha512-2UmkLMCuYCskuyyEqHIPfNg1svgtNxCWWCCfEnAIIhntWfX7mewdhSG7eBciFJep+CYfV6bGZLcb+sKYkb0jvg==
