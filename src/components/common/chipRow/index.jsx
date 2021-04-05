@@ -18,7 +18,6 @@ export const ChipRow = ({ labCategories, categories, slugs }) => {
               mr={2}
             />
             <TagLabel>{name}</TagLabel>
-            {categories && categories.includes(name) && <TagCloseButton />}
           </Tag>
         ))}
       </HStack>
