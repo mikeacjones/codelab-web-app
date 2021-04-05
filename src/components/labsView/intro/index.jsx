@@ -7,7 +7,7 @@ export const Intro = ({ pageContext }) => (
   <Wrapper>
     <IntroWrapper as={Container}>
       <Details>
-        <h1>MuleSoft Code Labs</h1>
+        <h1>MuleSoft Codelabs</h1>
         <h4>
           A collection of guided labs demonstrating how to build MuleSoft
           integrations.
