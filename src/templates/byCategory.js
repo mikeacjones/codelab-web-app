@@ -55,6 +55,9 @@ export const query = graphql`
           claat {
             env: prod {
               lastBuild
+              codelab {
+                duration
+              }
             }
           }
         }
@@ -72,6 +75,9 @@ export const query = graphql`
           claat {
             env: dev {
               lastBuild
+              codelab {
+                duration
+              }
             }
           }
         }

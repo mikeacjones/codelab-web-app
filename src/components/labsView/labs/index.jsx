@@ -4,6 +4,7 @@ import { LabContainer } from 'components/common'
 import { Image, Avatar } from '@chakra-ui/react'
 
 const translateTime = time => {
+  if (!time) return ''
   if (time === 0) return ''
   if (time < 60) return `${time} minutes`
   return `${time / 60} hours`
@@ -19,7 +20,7 @@ export const Labs = ({ labs, labCategories }) => {
               <Content>
                 <Title>{lab.labConfig.labTitle}</Title>
                 <Stats>
-                  {false && <span>{translateTime(lab.duration)}</span>}
+                  <span>{translateTime(lab.claat?.env?.codelab?.duration)}</span>
                   <span>Updated {lab.claat.env.lastBuild.substr(0, 10)}</span>
                 </Stats>
                 <Summary>{lab.labConfig.labSummary}</Summary>
