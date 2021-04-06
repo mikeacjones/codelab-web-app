@@ -39,16 +39,15 @@ exports.createPages = ({ actions, graphql }) => {
       dev: allMongodbCodelabsDbLabs {
         edges {
           node {
+            labConfig {
+              labCategories
+              labSummary
+              labTitle
+              labUrl
+            }
             claat {
               env: dev {
-                codelab {
-                  category
-                  url
-                  updated
-                  title
-                  tags
-                  summary
-                }
+                lastBuild
               }
             }
           }
@@ -57,16 +56,15 @@ exports.createPages = ({ actions, graphql }) => {
       prod: allMongodbCodelabsDbLabs {
         edges {
           node {
+            labConfig {
+              labCategories
+              labSummary
+              labTitle
+              labUrl
+            }
             claat {
               env: prod {
-                codelab {
-                  category
-                  url
-                  updated
-                  title
-                  tags
-                  summary
-                }
+                lastBuild
               }
             }
           }
@@ -82,9 +80,9 @@ exports.createPages = ({ actions, graphql }) => {
     }) => {
       const labNodes = data[process.env.BUILD_ENV].edges
       const { labsPerPage } = require('./src/data/config')
-      const labs = labNodes.filter(ln => ln.node.claat?.env).map(ln => ln.node.claat.env.codelab)
+      const labs = labNodes.filter(ln => ln.node.claat?.env?.lastBuild).map(ln => ln.node)
       const labCats = labCategories.map(lc => lc.name)
-      const categoriesInUse = labs.flatMap(lab => lab.category).filter((cat, index, self) => self.indexOf(cat) === index)
+      const categoriesInUse = labs.flatMap(lab => lab.labConfig.labCategories).filter((cat, index, self) => self.indexOf(cat) === index)
       const labCatsInUse = labCategories.filter(lc => categoriesInUse.includes(lc.name))
 
       const labsTemplate = path.resolve('./src/templates/index.js')
@@ -107,7 +105,7 @@ exports.createPages = ({ actions, graphql }) => {
 
       const combinedCategories = powerSet(categoriesInUse).filter(set => set.length > 0)
       for (categoryCombo of combinedCategories) {
-        const labsWithCategory = labs.filter(lab => lab.category && categoryCombo.some(cat => lab.category.includes(cat)))
+        const labsWithCategory = labs.filter(lab => categoryCombo.some(cat => lab.labConfig.labCategories.includes(cat)))
         const currentSlug = createTagSlug(categoryCombo.sort().join('-'))
         const catSlugs = labCats.reduce((map, cat) => {
           const linkCats = (categoryCombo.includes(cat)

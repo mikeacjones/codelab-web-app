@@ -4,6 +4,7 @@ import { LabContainer } from 'components/common'
 import { Image, Avatar } from '@chakra-ui/react'
 
 const translateTime = time => {
+  if (!time) return ''
   if (time === 0) return ''
   if (time < 60) return `${time} minutes`
   return `${time / 60} hours`
@@ -14,18 +15,18 @@ export const Labs = ({ labs, labCategories }) => {
     <Wrapper as={LabContainer} id='labs'>
       <Grid>
         {labs.map(lab => (
-          <Item key={lab.url} as='a' href={`/codelabs/${lab.url}/index.html`} target='_blank' rel='noopener noreferrer'>
+          <Item key={lab.labConfig.labUrl} as='a' href={`/codelabs/${lab.labConfig.labUrl}/index.html`} target='_blank' rel='noopener noreferrer'>
             <Card>
               <Content>
-                <Title>{lab.title}</Title>
+                <Title>{lab.labConfig.labTitle}</Title>
                 <Stats>
-                  <span>{translateTime(lab.duration)}</span>
-                  <span>Updated {lab.updated.substr(0, 10)}</span>
+                  <span>{translateTime(lab.claat?.env?.codelab?.duration)}</span>
+                  <span>Updated {lab.claat.env.lastBuild.substr(0, 10)}</span>
                 </Stats>
-                <Summary>{lab.summary}</Summary>
+                <Summary>{lab.labConfig.labSummary}</Summary>
               </Content>
               <Cats>
-                {lab.category
+                {lab.labConfig.labCategories
                   .filter(cat => labCategories[cat])
                   .map(cat => (
                     <div key={cat}>

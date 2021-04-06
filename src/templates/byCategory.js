@@ -6,9 +6,7 @@ import { PaginationLinks, PaginationLink, ActivePaginationLink } from './styles'
 
 const IndexPage = ({ data, pageContext }) => {
   const labNodes = data[pageContext.buildEnv].edges
-  const labs = labNodes
-    .filter(ln => ln.node.claat?.env)
-    .map(ln => ln.node.claat.env.codelab)
+  const labs = labNodes.filter(ln => ln.node.claat?.env?.lastBuild).map(ln => ln.node)
   const labCats = pageContext.labCategories.reduce((acc, lc) => {
     return { ...acc, [lc.name]: lc.image }
   }, {})
@@ -45,22 +43,19 @@ export default IndexPage
 
 export const query = graphql`
   query labQueryByCategory($skip: Int!, $limit: Int!, $categories: [String]!) {
-    prod: allMongodbCodelabsDbLabs(
-      skip: $skip
-      limit: $limit
-      filter: { claat: { prod: { codelab: { category: { in: $categories } } } } }
-    ) {
+    prod: allMongodbCodelabsDbLabs(skip: $skip, limit: $limit, filter: { labConfig: { labCategories: { in: $categories } } }) {
       edges {
         node {
+          labConfig {
+            labCategories
+            labSummary
+            labTitle
+            labUrl
+          }
           claat {
             env: prod {
+              lastBuild
               codelab {
-                category
-                url
-                updated
-                title
-                tags
-                summary
                 duration
               }
             }
@@ -68,18 +63,19 @@ export const query = graphql`
         }
       }
     }
-    dev: allMongodbCodelabsDbLabs(skip: $skip, limit: $limit, filter: { claat: { dev: { codelab: { category: { in: $categories } } } } }) {
+    dev: allMongodbCodelabsDbLabs(skip: $skip, limit: $limit, filter: { labConfig: { labCategories: { in: $categories } } }) {
       edges {
         node {
+          labConfig {
+            labCategories
+            labSummary
+            labTitle
+            labUrl
+          }
           claat {
             env: dev {
+              lastBuild
               codelab {
-                category
-                url
-                updated
-                title
-                tags
-                summary
                 duration
               }
             }

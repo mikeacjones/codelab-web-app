@@ -10,8 +10,8 @@ const IndexPage = ({
 }) => {
   const labNodes = data[pageContext.buildEnv].edges
   const labs = labNodes
-    .filter(ln => ln.node.claat?.env)
-    .map(ln => ln.node.claat.env.codelab)
+    .filter(ln => ln.node.claat?.env?.lastBuild)
+    .map(ln => ln.node)
   const labCats = pageContext.labCategories.reduce((acc, lc) => {
     return { ...acc, [lc.name]: lc.image }
   }, {})
@@ -51,15 +51,16 @@ export const query = graphql`
     dev: allMongodbCodelabsDbLabs(skip: $skip, limit: $limit) {
       edges {
         node {
+          labConfig {
+            labCategories
+            labSummary
+            labTitle
+            labUrl
+          }
           claat {
             env: dev {
+              lastBuild
               codelab {
-                category
-                url
-                updated
-                title
-                tags
-                summary
                 duration
               }
             }
@@ -70,15 +71,16 @@ export const query = graphql`
     prod: allMongodbCodelabsDbLabs(skip: $skip, limit: $limit) {
       edges {
         node {
+          labConfig {
+            labCategories
+            labSummary
+            labTitle
+            labUrl
+          }
           claat {
             env: prod {
+              lastBuild
               codelab {
-                category
-                url
-                updated
-                title
-                tags
-                summary
                 duration
               }
             }
