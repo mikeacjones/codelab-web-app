@@ -2,6 +2,30 @@ const path = require('path')
 const { paginate } = require('gatsby-awesome-pagination')
 const { createTagSlug, powerSet } = require('./helpers')
 
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type mongodbCodelabsDBLabsClaat {
+      dev: ClaatNode
+      prod: ClaatNode
+    }
+    type ClaatNode {
+      codelab: CodelabNode
+      lastBuild: Date
+      lastBuiltBy: String
+    }
+    type CodelabNode {
+      category: [String]
+      url: String
+      updated: Date
+      title: String
+      tags: [String]
+      summary: String
+    }
+  `
+  createTypes(typeDefs)
+}
+
 exports.createPages = ({ actions, graphql }) => {
   const { createPage } = actions
   return graphql(`
