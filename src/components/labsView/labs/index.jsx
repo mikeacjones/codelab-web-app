@@ -14,18 +14,18 @@ export const Labs = ({ labs, labCategories }) => {
     <Wrapper as={LabContainer} id='labs'>
       <Grid>
         {labs.map(lab => (
-          <Item key={lab.url} as='a' href={`/codelabs/${lab.url}/index.html`} target='_blank' rel='noopener noreferrer'>
+          <Item key={lab.labConfig.labUrl} as='a' href={`/codelabs/${lab.labConfig.labUrl}/index.html`} target='_blank' rel='noopener noreferrer'>
             <Card>
               <Content>
-                <Title>{lab.title}</Title>
+                <Title>{lab.labConfig.labTitle}</Title>
                 <Stats>
-                  <span>{translateTime(lab.duration)}</span>
-                  <span>Updated {lab.updated.substr(0, 10)}</span>
+                  {false && <span>{translateTime(lab.duration)}</span>}
+                  <span>Updated {lab.claat.env.lastBuild.substr(0, 10)}</span>
                 </Stats>
-                <Summary>{lab.summary}</Summary>
+                <Summary>{lab.labConfig.labSummary}</Summary>
               </Content>
               <Cats>
-                {lab.category
+                {lab.labConfig.labCategories
                   .filter(cat => labCategories[cat])
                   .map(cat => (
                     <div key={cat}>
