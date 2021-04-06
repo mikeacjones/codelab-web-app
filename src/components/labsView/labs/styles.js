@@ -71,6 +71,7 @@ export const Stats = styled.div`
 export const Cats = styled.div`
   display: flex;
   flex: 0 0 25px;
+  align-items: center;
 
   div {
     display: flex;

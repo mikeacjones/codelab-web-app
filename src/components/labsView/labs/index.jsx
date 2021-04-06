@@ -29,7 +29,7 @@ export const Labs = ({ labs, labCategories }) => {
                 {lab.labConfig.labCategories
                   .filter(cat => labCategories[cat])
                   .map(cat => (
-                    <div key={cat}>
+                    <div key={cat} style={{ display: 'block' }}>
                       <Image src={`/images/icons/${labCategories[cat]}`} alt='' boxSize='25px' />
                     </div>
                   ))}
