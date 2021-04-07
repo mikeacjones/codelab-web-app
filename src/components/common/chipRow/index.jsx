@@ -7,6 +7,16 @@ export const ChipRow = ({ labCategories, categories, slugs }) => {
   return (
     <Container>
       <Stack direction={['column', 'row']} spacing={2} wrap='wrap' align='center'>
+        <Tag
+          size='lg'
+          colorScheme='blue'
+          borderRadius='full'
+          variant={categories && categories.length > 0 ? 'outline' : 'subtle'}
+          as={Link}
+          to='/'
+          style={{ marginBottom: '5px' }}>
+          All Categories
+        </Tag>
         {labCategories.map(({ name, image }, index) => (
           <Tag
             key={name}
@@ -16,7 +26,7 @@ export const ChipRow = ({ labCategories, categories, slugs }) => {
             variant={categories && categories.includes(name) ? 'subtle' : 'outline'}
             as={Link}
             to={`${slugs[name]}`}
-            style={{marginBottom: '5px'}}>
+            style={{ marginBottom: '5px' }}>
             <Avatar src={`/images/icons/${image}`} size='xs' bg='transparent' name={name} ml={-1} mr={2} />
             <TagLabel>{name}</TagLabel>
           </Tag>

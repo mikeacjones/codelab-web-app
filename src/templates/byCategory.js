@@ -51,6 +51,7 @@ export const query = graphql`
             labSummary
             labTitle
             labUrl
+            labAuthors
           }
           claat {
             env: prod {
@@ -71,6 +72,7 @@ export const query = graphql`
             labSummary
             labTitle
             labUrl
+            labAuthors
           }
           claat {
             env: dev {
