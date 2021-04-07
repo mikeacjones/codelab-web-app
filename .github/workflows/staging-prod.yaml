@@ -1,4 +1,4 @@
-name: Gatsby Publish
+name: Staging - Prod - Build Site
 
 on:
   workflow_dispatch:
@@ -28,10 +28,13 @@ jobs:
           MONGO_DB: ${{ secrets.MONGO_DB }}
           MONGO_COLLECTION_CATS: ${{ secrets.MONGO_COLLECTION_CATS }}
           MONGO_COLLECTION_LABS: ${{ secrets.MONGO_COLLECTION_LABS }}
-      - name: Upload site to staging dev
-        uses: shallwefootball/s3-upload-action@master
+      - name: Sync s3 bucket
+        uses: jakejarvis/s3-sync-action@master
         with:
-          aws_key_id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws_secret_access_key: ${{ secrets.AWS_ACCESS_SECRET }}
-          aws_bucket: stg-codelabs
-          source_dir: public
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: 'stg-codelabs'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ACCESS_SECRET }}
+          AWS_REGION: 'us-west-1'   # optional: defaults to us-east-1
+          SOURCE_DIR: 'public'      # optional: defaults to entire repository
