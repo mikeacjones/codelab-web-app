@@ -2,12 +2,15 @@ name: Remote Build Site
 
 on:
   repository_dispatch:
+    types: [staging]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+        with:
+          ref: staging
       - run: yarn
       - run: yarn build
         env:
