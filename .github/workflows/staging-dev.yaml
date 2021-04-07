@@ -23,10 +23,16 @@ jobs:
           GOOG_SA_KEY: ${{ secrets.GOOG_SA_KEY }}
           GOOG_FOLDER_ID: ${{ secrets.GOOG_FOLDER_ID }}
           BUILD_ENV: dev
+          MONGO_HOST: ${{ secrets.MONGO_HOST }}
+          MONGO_USERNAME: ${{ secrets.MONGO_USERNAME }}
+          MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
+          MONGO_DB: ${{ secrets.MONGO_DB }}
+          MONGO_COLLECTION_CATS: ${{ secrets.MONGO_COLLECTION_CATS }}
+          MONGO_COLLECTION_LABS: ${{ secrets.MONGO_COLLECTION_LABS }}
       - name: Upload site to staging dev
         uses: shallwefootball/s3-upload-action@master
         with:
           aws_key_id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws_secret_access_key: ${{ secrets.AWS_ACCESS_SECRET}}
+          aws_secret_access_key: ${{ secrets.AWS_ACCESS_SECRET }}
           aws_bucket: stg-codelabs-dev
           source_dir: public
