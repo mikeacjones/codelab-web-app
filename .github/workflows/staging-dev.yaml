@@ -1,4 +1,4 @@
-name: Staging - Prod - Build Site
+name: Staging - Dev - Build Site
 
 on:
   workflow_dispatch:
@@ -28,12 +28,12 @@ jobs:
           MONGO_DB: ${{ secrets.MONGO_DB }}
           MONGO_COLLECTION_CATS: ${{ secrets.MONGO_COLLECTION_CATS }}
           MONGO_COLLECTION_LABS: ${{ secrets.MONGO_COLLECTION_LABS }}
-      - name: Sync s3 bucket
-        uses: jakejarvis/s3-sync-action@master
+      - name: Configure AWS credentials from Test account
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          args: --acl public-read --follow-symlinks --delete
-        env:
-          AWS_S3_BUCKET: 'stg-codelabs-dev'
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_ACCESS_SECRET }}
-          SOURCE_DIR: 'public'      # optional: defaults to entire repository
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_ACCESS_SECRET }}
+          aws-region: us-east-1
+      - name: Copy files to the test website with the AWS CLI
+        run: |
+          aws s3 sync ./public s3://stg-codelabs-dev
