@@ -1,11 +1,7 @@
-name: Staging - Prod - Build Site
+name: Remote Build Site
 
 on:
-  workflow_dispatch:
-  push:
-    branches: staging
-    paths-ignore: 
-      - README.md
+  repository_dispatch:
 
 jobs:
   build:
@@ -18,7 +14,7 @@ jobs:
           GOOG_SA_EMAIL: ${{ secrets.GOOG_SA_EMAIL }}
           GOOG_SA_KEY: ${{ secrets.GOOG_SA_KEY }}
           GOOG_FOLDER_ID: ${{ secrets.GOOG_FOLDER_ID }}
-          BUILD_ENV: prod
+          BUILD_ENV: ${{ github.event.build_env }}
           MONGO_HOST: ${{ secrets.MONGO_HOST }}
           MONGO_USERNAME: ${{ secrets.MONGO_USERNAME }}
           MONGO_PASSWORD: ${{ secrets.MONGO_PASSWORD }}
@@ -33,4 +29,6 @@ jobs:
           aws-region: us-east-1
       - name: Copy files to the test website with the AWS CLI
         run: |
-          aws s3 sync ./public s3://stg-codelabs
+          aws s3 sync ./public s3://${TARGET_BUCKET}
+        env:
+          TARGET_BUCKET: ${{ github.event.target_bucket }}
