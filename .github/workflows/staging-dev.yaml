@@ -1,6 +1,7 @@
 name: Staging - Dev - Build Site
 
 on:
+  repository_dispatch:
   workflow_dispatch:
   push:
     branches: staging
@@ -28,7 +29,7 @@ jobs:
           MONGO_DB: ${{ secrets.MONGO_DB }}
           MONGO_COLLECTION_CATS: ${{ secrets.MONGO_COLLECTION_CATS }}
           MONGO_COLLECTION_LABS: ${{ secrets.MONGO_COLLECTION_LABS }}
-      - name: Configure AWS credentials from Test account
+      - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
