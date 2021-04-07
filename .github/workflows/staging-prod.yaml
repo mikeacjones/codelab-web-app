@@ -6,7 +6,6 @@ on:
     branches: staging
     paths-ignore: 
       - README.md
-      - .github/workflows/*.yaml
 
 jobs:
   build:
